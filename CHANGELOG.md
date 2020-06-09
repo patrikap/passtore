@@ -7,4 +7,6 @@ All notable changes to `patrikap/passtore` will be documented in this file.
 
 ## 1.0.0 - 2020-06-02
 - Added:
-    - Dummy classes for creating Pass structure
+    - dummy classes for creating Pass structure;
+    - example passes
+    - example tests
