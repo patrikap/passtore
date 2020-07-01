@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Patrikap\Passtore\Base\TopLevel;
 
 
+use Patrikap\Passtore\Base\LowerLevel\NFCDictionary;
+
 /**
  * Class NFCEnabledPassKeys
  * @package Patrikap\Passtore\Base\TopLevel
@@ -27,12 +29,19 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:50
  * @author Konstantin.K
  */
-trait NFCEnabledPassKeys
+class NFCEnabledPassKeys
 {
     /**
      * @todo https://developer.apple.com/library/archive/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/LowerLevel.html#//apple_ref/doc/uid/TP40012026-CH3-SW5
      * @var array|null Optional. Information used for Value Added Service Protocol transactions. For this dictionary’s
      *     keys, see NFC Dictionary Keys. Available in iOS 9.0
      */
-    protected ?array $nfc = null;
+    protected NFCDictionary $nfc;
+
+    /*********************************/
+    public function __construct(NFCDictionary $nfc)
+    {
+        $this->nfc = $nfc;
+    }
+    /*********************************/
 }

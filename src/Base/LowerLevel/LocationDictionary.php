@@ -30,4 +30,20 @@ class LocationDictionary
      *     description of the nearby location such as “Store nearby on 1st and Main.”
      */
     protected ?string $relevantText = null;
+
+    /*********************************/
+    /**
+     * LocationDictionary constructor.
+     * @param float $latitude
+     * @param float $longitude
+     * @param string|null $relevantText
+     * @param float|null $altitude
+     */
+    public function __construct(float $latitude, float $longitude, ?string $relevantText = null, ?float $altitude = null)
+    {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $this->relevantText = $relevantText;
+        $this->altitude = $altitude;
+    }
 }

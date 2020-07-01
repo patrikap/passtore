@@ -5,6 +5,9 @@ declare(strict_types = 1);
 namespace Patrikap\Passtore\Base\TopLevel;
 
 
+use Exception;
+use Patrikap\Passtore\Base\LowerLevel\PassStructureDictionary;
+
 /**
  * Class StyleKeys
  * @package Patrikap\Passtore\Base\TopLevel
@@ -24,16 +27,38 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:35
  * @author Konstantin.K
  */
-abstract class StyleKeys
+class StyleKeys
 {
+    public const PASS_STYLE_KEYS = ['boardingPass', 'coupon', 'eventTicket', 'generic', 'storeCard'];
+
     /** @var array|null Information specific to a boarding pass. */
-    protected ?array $boardingPass = null;
+    //protected ?array $boardingPass = null;
     /** @var array|null Information specific to a coupon. */
-    protected ?array $coupon = null;
+    //protected ?array $coupon = null;
     /** @var array|null Information specific to an event ticket. */
-    protected ?array $eventTicket = null;
+    //protected ?array $eventTicket = null;
     /** @var array|null Information specific to a generic pass. */
-    protected ?array $generic = null;
+    //protected ?array $generic = null;
     /** @var array|null Information specific to a store card. */
-    protected ?array $storeCard = null;
+    //protected ?array $storeCard = null;
+
+    protected PassStructureDictionary $body;
+    protected string $styleType;
+
+    /*********************************/
+    /**
+     * StyleKeys constructor.
+     * @param string $styleType
+     * @param PassStructureDictionary $body
+     * @throws Exception
+     */
+    public function __construct(string $styleType, PassStructureDictionary $body)
+    {
+        if (!in_array($styleType, static::PASS_STYLE_KEYS)) {
+            throw new Exception('Pass style type is not valid value: ' . $styleType);
+        }
+        $this->styleType = $styleType;
+        $this->body = $body;
+    }
+    /*********************************/
 }

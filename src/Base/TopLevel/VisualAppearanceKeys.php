@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Patrikap\Passtore\Base\TopLevel;
 
 
+use Patrikap\Passtore\Base\LowerLevel\BarcodeDictionary;
+
 /**
  * Class VisualAppearanceKeys
  * @package Patrikap\Passtore\Base\TopLevel
@@ -23,7 +25,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:41
  * @author Konstantin.K
  */
-trait VisualAppearanceKeys
+class VisualAppearanceKeys
 {
     /**
      * @todo https://developer.apple.com/library/archive/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/LowerLevel.html#//apple_ref/doc/uid/TP40012026-CH3-SW3
@@ -31,13 +33,13 @@ trait VisualAppearanceKeys
      *     Dictionary Keys.
      * Note:Deprecated in iOS 9.0 and later; use barcodes instead.
      */
-    protected ?array $barcode = [];
+    protected ?BarcodeDictionary $barcode = null;
     /**
-     * @var array|null Optional. Information specific to the pass’s barcode. The system uses the first valid
+     * @var BarcodeDictionary[] Optional. Information specific to the pass’s barcode. The system uses the first valid
      *     barcode dictionary in the array. Additional dictionaries can be added as fallbacks. For this dictionary’s
      *     keys, see Barcode Dictionary Keys. Note: Available only in iOS 9.0 and later.
      */
-    protected ?array $barcodes = [];
+    protected array $barcodes = [];
     /**
      * @var string|null Optional. Background color of the pass, specified as an CSS-style RGB triple. For example,
      *     rgb(23, 187, 82).
@@ -69,6 +71,85 @@ trait VisualAppearanceKeys
      * @var bool|null Optional. If true, the strip image is displayed without a shine effect. The default value prior
      *     to iOS 7.0 is false. In iOS 7.0, a shine effect is never applied, and this key is deprecated.
      */
-    protected ?bool $suppressStripShine = false;
+    protected bool $suppressStripShine = false;
 
+    /*********************************/
+
+    /*********************************/
+    /**
+     * @param BarcodeDictionary|null $barcode
+     * @return $this
+     */
+    public function setBarcode(BarcodeDictionary $barcode): self
+    {
+        $this->barcode = $barcode;
+
+        return $this;
+    }
+
+    /**
+     * @param BarcodeDictionary[] $barcodes
+     * @return $this
+     */
+    public function setBarcodes(array $barcodes): self
+    {
+        $this->barcodes = $barcodes;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $backgroundColor
+     * @return $this
+     */
+    public function setBackgroundColor(?string $backgroundColor): self
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $foregroundColor
+     * @return $this
+     */
+    public function setForegroundColor(?string $foregroundColor): self
+    {
+        $this->foregroundColor = $foregroundColor;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $labelColor
+     * @return $this
+     */
+    public function setLabelColor(?string $labelColor): self
+    {
+        $this->labelColor = $labelColor;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $groupingIdentifier
+     * @return $this
+     */
+    public function setGroupingIdentifier(?string $groupingIdentifier): self
+    {
+        $this->groupingIdentifier = $groupingIdentifier;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $logoText
+     * @return $this
+     */
+    public function setLogoText(?string $logoText): self
+    {
+        $this->logoText = $logoText;
+
+        return $this;
+    }
 }

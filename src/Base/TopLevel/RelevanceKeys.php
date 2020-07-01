@@ -5,6 +5,9 @@ declare(strict_types = 1);
 namespace Patrikap\Passtore\Base\TopLevel;
 
 
+use Patrikap\Passtore\Base\LowerLevel\BeaconDictionary;
+use Patrikap\Passtore\Base\LowerLevel\LocationDictionary;
+
 /**
  * Class RelevanceKeys
  * @package Patrikap\Passtore\Base\TopLevel
@@ -17,7 +20,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:29
  * @author Konstantin.K
  */
-trait RelevanceKeys
+class RelevanceKeys
 {
     /**
      * @todo https://developer.apple.com/library/archive/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/LowerLevel.html#//apple_ref/doc/uid/TP40012026-CH3-SW4
@@ -25,13 +28,13 @@ trait RelevanceKeys
      * For these dictionaries’ keys, see Beacon Dictionary Keys
      * Available in iOS 7.0.
      */
-    protected ?array $beacons = null;
+    protected array $beacons = [];
     /**
      * @todo https://developer.apple.com/library/archive/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/LowerLevel.html#//apple_ref/doc/uid/TP40012026-CH3-SW2
      * @var array|null Optional. Locations where the pass is relevant. For example, the location of your store.
      * For these dictionaries’ keys, see Location Dictionary Keys.
      */
-    protected ?array $locations = null;
+    protected array $locations = [];
     /**
      * @var int|null Optional. Maximum distance in meters from a relevant latitude and longitude that the pass is
      *     relevant. This number is compared to the pass’s default distance and the smaller value is used. Available in
@@ -45,4 +48,31 @@ trait RelevanceKeys
      * The value must be a complete date with hours and minutes, and may optionally include seconds.
      */
     protected ?string $relevantDate = null;
+
+    /*********************************/
+    /**
+     * RelevanceKeys constructor.
+     * @param string|null $relevantDate
+     * @param int|null $maxDistance
+     */
+    public function __construct(?string $relevantDate, ?int $maxDistance)
+    {
+        $this->relevantDate = $relevantDate;
+        $this->maxDistance = $maxDistance;
+    }
+
+    /*********************************/
+    public function addBeacon(BeaconDictionary $beacon): self
+    {
+        $this->beacons[] = $beacon;
+
+        return $this;
+    }
+
+    public function addLocation(LocationDictionary $location): self
+    {
+        $this->locations[] = $location;
+
+        return $this;
+    }
 }

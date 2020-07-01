@@ -17,7 +17,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:20
  * @author Konstantin.K
  */
-trait CompanionAppKeys
+class CompanionAppKeys
 {
     /** @var array|null Optional. Custom information for companion apps. This data is not displayed to the user.
      * For example, a pass for a cafe could include information about the user’s favorite drink and sandwich in a
@@ -26,6 +26,16 @@ trait CompanionAppKeys
      */
     protected ?array $userInfo = [];
 
+    /*********************************/
+    /**
+     * CompanionAppKeys constructor.
+     * @param array $userInfo
+     */
+    public function __construct(array $userInfo)
+    {
+        $this->userInfo = $userInfo;
+    }
+    /*********************************/
     /**
      * @return array|null
      */
@@ -34,15 +44,15 @@ trait CompanionAppKeys
         return $this->userInfo;
     }
 
-    /**
-     * @todo: change ti interface in Lower Level
-     * @param array|null $userInfo
-     * @return $this
-     */
-    public function setUserInfo(?array $userInfo): self
-    {
-        $this->userInfo = $userInfo;
-
-        return $this;
-    }
+    ///**
+    // * @todo: change ti interface in Lower Level
+    // * @param array|null $userInfo
+    // * @return $this
+    // */
+    //public function setUserInfo(?array $userInfo): self
+    //{
+    //    $this->userInfo = $userInfo;
+    //
+    //    return $this;
+    //}
 }

@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Patrikap\Passtore\Base\LowerLevel;
 
 
+use Exception;
+
 /**
  * Class BarcodeDictionary
  * @package Patrikap\Passtore\Base\LowerLevel
@@ -42,4 +44,20 @@ class BarcodeDictionary
      *     that is supported by your barcode scanning infrastructure.
      */
     protected string $messageEncoding = 'iso-8859-1';
+
+    /*********************************/
+    /**
+     * BarcodeDictionary constructor.
+     * @param string $format
+     * @param string $message
+     * @throws Exception
+     */
+    public function __construct(string $format, string $message)
+    {
+        if (!in_array($format, [self::BARCODE_FORMAT_128, self::BARCODE_FORMAT_AZTEC, self::BARCODE_FORMAT_PDF, self::BARCODE_FORMAT_QR])) {
+            throw new Exception('Not supported format barcode: ' . $format);
+        }
+        $this->format = $format;
+        $this->message = $message;
+    }
 }

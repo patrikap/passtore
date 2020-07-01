@@ -17,7 +17,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:15
  * @author Konstantin.K
  */
-trait AssociatedAppKeys
+class AssociatedAppKeys
 {
     /** @var string|null Optional. A URL to be passed to the associated app when launching it.
      * The app receives this URL in the application:didFinishLaunchingWithOptions: and application:openURL:options:
@@ -31,6 +31,18 @@ trait AssociatedAppKeys
      * link launches the app. */
     protected ?array $associatedStoreIdentifiers = [];
 
+    /*********************************/
+    /**
+     * AssociatedAppKeys constructor.
+     * @param string $appLaunchURL
+     * @param array $associatedStoreIdentifiers
+     */
+    public function __construct(string $appLaunchURL, array $associatedStoreIdentifiers)
+    {
+        $this->appLaunchURL = $appLaunchURL;
+        $this->associatedStoreIdentifiers = $associatedStoreIdentifiers;
+    }
+    /*********************************/
     /**
      * @return string|null
      */
@@ -39,16 +51,16 @@ trait AssociatedAppKeys
         return $this->appLaunchURL;
     }
 
-    /**
-     * @param string|null $appLaunchURL
-     * @return $this
-     */
-    public function setAppLaunchURL(?string $appLaunchURL): self
-    {
-        $this->appLaunchURL = $appLaunchURL;
-
-        return $this;
-    }
+    ///**
+    // * @param string|null $appLaunchURL
+    // * @return $this
+    // */
+    //public function setAppLaunchURL(?string $appLaunchURL): self
+    //{
+    //    $this->appLaunchURL = $appLaunchURL;
+    //
+    //    return $this;
+    //}
 
     /**
      * @return array|int[]|null
@@ -58,15 +70,15 @@ trait AssociatedAppKeys
         return $this->associatedStoreIdentifiers;
     }
 
-    /**
-     * @param array|int[]|null $associatedStoreIdentifiers
-     * @return $this
-     */
-    public function setAssociatedStoreIdentifiers(array $associatedStoreIdentifiers): self
-    {
-        $this->associatedStoreIdentifiers = $associatedStoreIdentifiers;
-
-        return $this;
-    }
+    ///**
+    // * @param array|int[]|null $associatedStoreIdentifiers
+    // * @return $this
+    // */
+    //public function setAssociatedStoreIdentifiers(array $associatedStoreIdentifiers): self
+    //{
+    //    $this->associatedStoreIdentifiers = $associatedStoreIdentifiers;
+    //
+    //    return $this;
+    //}
 
 }

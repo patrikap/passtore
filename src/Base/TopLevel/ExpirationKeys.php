@@ -19,7 +19,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:24
  * @author Konstantin.K
  */
-trait ExpirationKeys
+class ExpirationKeys
 {
     /**
      * @todo change to datetime interface
@@ -34,6 +34,18 @@ trait ExpirationKeys
      */
     protected ?bool $voided = null;
 
+    /*********************************/
+    /**
+     * ExpirationKeys constructor.
+     * @param string $expirationDate
+     * @param bool $voided
+     */
+    public function __construct(string $expirationDate, bool $voided)
+    {
+        $this->expirationDate = $expirationDate;
+        $this->voided = $voided;
+    }
+    /*********************************/
     /**
      * @return string|null
      */
@@ -43,34 +55,10 @@ trait ExpirationKeys
     }
 
     /**
-     * @param string|null $expirationDate
-     * @return $this
-     */
-    public function setExpirationDate(?string $expirationDate): self
-    {
-        $this->expirationDate = $expirationDate;
-
-        return $this;
-    }
-
-    /**
      * @return bool|null
      */
     public function getVoided(): ?bool
     {
         return $this->voided;
     }
-
-    /**
-     * @param bool|null $voided
-     * @return $this
-     */
-    public function setVoided(?bool $voided): self
-    {
-        $this->voided = $voided;
-
-        return $this;
-    }
-
-
 }

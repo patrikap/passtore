@@ -18,7 +18,7 @@ namespace Patrikap\Passtore\Base\LowerLevel;
  * @date 02.06.2020 22:01
  * @author Konstantin.K
  */
-class PassStructureDictionary
+abstract class PassStructureDictionary
 {
     public const TRANSIT_TYPE_AIR     = 'PKTransitTypeAir';
     public const TRANSIT_TYPE_BOAT    = 'PKTransitTypeBoat';
@@ -26,18 +26,18 @@ class PassStructureDictionary
     public const TRANSIT_TYPE_GENERIC = 'PKTransitTypeGeneric';
     public const TRANSIT_TYPE_TRAIN   = 'PKTransitTypeTrain';
     /** @var array|null Optional. Additional fields to be displayed on the front of the pass. */
-    protected ?array $auxiliaryFields = null;
+    protected array $auxiliaryFields = [];
     /** @var array|null Optional. Fields to be on the back of the pass. */
-    protected ?array $backFields = null;
+    protected array $backFields = [];
     /**
      * @var array|null Optional. Fields to be displayed in the header on the front of the pass.
      * Use header fields sparingly; unlike all other fields, they remain visible when a stack of passes are displayed.
      */
-    protected ?array $headerFields = null;
+    protected array $headerFields = [];
     /** @var array|null Optional. Fields to be displayed prominently on the front of the pass. */
-    protected ?array $primaryFields = null;
+    protected array $primaryFields = [];
     /** @var array|null Optional. Fields to be displayed on the front of the pass. */
-    protected ?array $secondaryFields = null;
+    protected array $secondaryFields = [];
     /**
      * @var string|null Required for boarding passes; otherwise not allowed. Type of transit. Must be one of the
      *     following values: PKTransitTypeAir, PKTransitTypeBoat, PKTransitTypeBus,

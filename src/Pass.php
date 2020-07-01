@@ -14,7 +14,7 @@ namespace Patrikap\Passtore;
  * @date 31.05.2020 21:16
  * @author Konstantin.K
  */
-final class Pass extends \Patrikap\Passtore\Base\AbstractPass
+class Pass extends \Patrikap\Passtore\Base\Pass
 {
 
 }

@@ -18,7 +18,7 @@ namespace Patrikap\Passtore\Base\TopLevel;
  * @date 31.05.2020 23:47
  * @author Konstantin.K
  */
-trait WebServiceKeys
+class WebServiceKeys
 {
     /**
      * @var string The authentication token to use with the web service. The token must be 16 characters or longer.
@@ -31,4 +31,12 @@ trait WebServiceKeys
      * https://developer.apple.com/library/archive/documentation/PassKit/Reference/PassKit_WebService/WebService.html#//apple_ref/doc/uid/TP40011988
      */
     protected string $webServiceURL;
+
+    /*********************************/
+    public function __construct(string $authenticationToken, string $webServiceURL)
+    {
+        $this->authenticationToken = $authenticationToken;
+        $this->webServiceURL = $webServiceURL;
+    }
+    /*********************************/
 }

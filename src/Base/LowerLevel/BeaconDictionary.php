@@ -32,4 +32,20 @@ class BeaconDictionary
      *     description of the nearby location such as “Store nearby on 1st and Main.”
      */
     protected ?string $relevantText = null;
+
+    /*********************************/
+    /**
+     * BeaconDictionary constructor.
+     * @param string $proximityUUID
+     * @param string|null $relevantText
+     * @param int|null $minor
+     * @param int|null $major
+     */
+    public function __construct(string $proximityUUID, ?string $relevantText = null, ?int $minor = null, ?int $major = null)
+    {
+        $this->proximityUUID = $proximityUUID;
+        $this->relevantText = $relevantText;
+        $this->minor = $minor;
+        $this->major = $major;
+    }
 }

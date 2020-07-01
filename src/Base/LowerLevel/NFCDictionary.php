@@ -29,4 +29,16 @@ class NFCDictionary
      *     encoded X.509 SubjectPublicKeyInfo structure containing a ECDH public key for group P256.
      */
     protected ?string $encryptionPublicKey = null;
+
+    /*********************************/
+    /**
+     * NFCDictionary constructor.
+     * @param string $message
+     * @param string|null $encryptionPublicKey
+     */
+    public function __construct(string $message, ?string $encryptionPublicKey = null)
+    {
+        $this->message = $message;
+        $this->encryptionPublicKey = $encryptionPublicKey;
+    }
 }
